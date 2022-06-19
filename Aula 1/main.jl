@@ -29,8 +29,12 @@
 
 include("../modulos/MyBubbleSort.jl")
 include("../modulos/MyInsertionSort.jl")
+include("../modulos/MyQuickSort.jl")
+include("../modulos/MyMergeSort.jl")
+
 using Random, Distributions, Plots, CSV, DataFrames
-import .BubbleSort.bubble_sort!, .InsertSort.insertion_sort!, .InsertSort.insertion_sort_d!
+import .BubbleSort.bubble_sort!, .InsertSort.insertion_sort!, .InsertSort.insertion_sort_d!,
+    .QuickSort.quick_sort!, .MergeSort.merge_sort!
 
 
 function media(X)
@@ -50,23 +54,24 @@ function desvio_padrao(X)
         Y[k] = desvio(X[k], μ)
     end
 
-    σ = sqrt(sum(Y) / length(X))
+    σ = sum(Y) / length(X)
     σ
 end
 
 function erro_relativo(μ, σ)
-    ϵ = σ / μ * 100
+    ϵ = (σ / μ) * 100
     ϵ
 end
 
 function medir_tempo!(A, N, index, T, sample_size)
-    A1 = A
-    A2 = A
+
 
     T[index, 1] = N
     T1 = zeros(sample_size)
     T2 = zeros(sample_size)
     for i = 1:sample_size
+        A1 = A
+        A2 = A
         t1 = @elapsed insertion_sort!(A1)
         t2 = @elapsed bubble_sort!(A2)
         T1[i] = t1
@@ -102,8 +107,9 @@ function medir_tempo!(A, N, index, T, sample_size)
 
     if ϵT1 < 10
         T[index, 2] = μT1
+    end
 
-    elseif ϵT2 < 10
+    if ϵT2 < 10
         T[index, 3] = μT2
     end
 
@@ -119,9 +125,9 @@ function main()
     σ = 1.0
     d = Normal(μ, σ)
 
-    NS = 10
-    NF = 100
-    ΔN = 10
+    NS = 1000
+    NF = 10000
+    ΔN = 1000
     nr_steps = convert(Int64, ((NF - NS) / ΔN) + 1)
 
     timings = zeros(nr_steps, 3)
@@ -134,7 +140,7 @@ function main()
 
     println(timings)
 
-    plot(timings[:, 1], timings[:, 2] * 2, title="Insertion-Sort vs Bubble-Sort", label="inserion_sort", lw=3)
+    plot(timings[:, 1], timings[:, 2] * 65, title="InsertSort vs BubbleSort", label="insertion_sort", lw=3)
     plot!(timings[:, 1], timings[:, 3], label="bubble_sort", lw=3)
 
 
@@ -142,6 +148,7 @@ function main()
     # println("Before InsertSort ", df)
     # insertion_sort_d!(df)
     # println("After InsertSort ", df)
+
 
 
 
