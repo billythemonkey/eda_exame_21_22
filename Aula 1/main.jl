@@ -119,10 +119,11 @@ function main()
     μ = 0.0
     σ = 1.0
     d = Normal(μ, σ)
+    
 
-    NS = 1000
-    NF = 10000
-    ΔN = 1000
+    NS = 100
+    NF = 1000
+    ΔN = 100
     nr_steps = convert(Int64, ((NF - NS) / ΔN) + 1)
 
     timings = zeros(nr_steps, 3)
@@ -135,7 +136,7 @@ function main()
 
     println(timings)
 
-    plot(timings[:, 1], timings[:, 2] * 65, title="InsertSort vs BubbleSort", label="insertion_sort", lw=3)
+    plot(timings[:, 1], timings[:, 2] * 70, title="InsertSort vs BubbleSort", label="insertion_sort", lw=3)
     plot!(timings[:, 1], timings[:, 3], label="bubble_sort", lw=3)
 
 

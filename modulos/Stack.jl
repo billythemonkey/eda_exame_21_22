@@ -3,8 +3,6 @@ Author: Andrei Razvan Oproiu
 Date: Tue May 03 2022
 """
 module MyStack
-
-
 mutable struct Stack
     top::Int64
     memory::Array

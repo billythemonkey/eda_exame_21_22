@@ -27,9 +27,18 @@ function main()
 
     pos1 = next_position!(mem)
     insert!(l, pos1, "A")
-
+    println("----------")
     MyLinkedList.printLinkedList(l)
 
+    pos2 = next_position!(mem)
+    insert!(l, pos2, "B")
+    println("----------")
+    MyLinkedList.printLinkedList(l)
+    
+    pos3 = next_position!(mem)
+    insert!(l, pos3, "C")
+    println("----------")
+    MyLinkedList.printLinkedList(l)
 end
 
 main()
