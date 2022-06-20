@@ -1,4 +1,4 @@
-module MergeSort
+module MyMergeSort
 function merge_sort!(A, p, r)
     if p < r
         q = convert(Int64, floor((p + r) / 2))

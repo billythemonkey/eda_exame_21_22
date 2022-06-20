@@ -29,12 +29,9 @@
 
 include("../modulos/MyBubbleSort.jl")
 include("../modulos/MyInsertionSort.jl")
-include("../modulos/MyQuickSort.jl")
-include("../modulos/MyMergeSort.jl")
 
 using Random, Distributions, Plots, CSV, DataFrames
-import .BubbleSort.bubble_sort!, .InsertSort.insertion_sort!, .InsertSort.insertion_sort_d!,
-    .QuickSort.quick_sort!, .MergeSort.merge_sort!
+import .BubbleSort.bubble_sort!, .InsertSort.insertion_sort!, .InsertSort.insertion_sort_d!
 
 
 function media(X)
@@ -64,8 +61,6 @@ function erro_relativo(μ, σ)
 end
 
 function medir_tempo!(A, N, index, T, sample_size)
-
-
     T[index, 1] = N
     T1 = zeros(sample_size)
     T2 = zeros(sample_size)

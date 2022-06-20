@@ -1,12 +1,17 @@
-include("../modulos/MyQueue.jl")
-using .MyQueue
-import .Queue.enqueue!, .Queue.dequeue!
+include("../modulos/MyMergeSort.jl")
 
+using Random, Distributions, Plots
+
+import .MyMergeSort.merge_sort!
 
 function main()
     N = 10
-    q = MyQueue.Queue(N)
-    println(q)
+    A = rand(Normal(0, 100), N)
+    println(A)
+    merge_sort!(A, 1, N)
+
+
+    println(A)
 end
 
 main()

@@ -1,8 +1,3 @@
-"""
-Author: Andrei Razvan Oproiu
-Date: Tue May 03 2022
-"""
-
 
 mutable struct Stack
     top::Int
@@ -46,31 +41,29 @@ function push!(s, value)
 end
 
 
-function main()
-    N = 10
-    s = Stack(N)
+mutable struct LinkedList
+    head::Int64
+    a_key::Array{Int64}
+    a_next::Array{Int64}
+    a_prev::Array{Int64}
+    mem::Stack
 
-    for i in 1:N
-        push!(s, i)
-        println(s)
+    function LinkedList(size)
+        s = Stack(size)
+        for i in 1:size
+            push!(s, i)
+        end
+
+        new(1, ones(size), ones(size), ones(size), s)
     end
 
-    v1 = pop!(s)
-    println(v1)
-    println(s)
-    v2 = pop!(s)
-    println(v2)
-    println(s)
-    v3 = pop!(s)
-    println(v3)
-    println(s)
-    v4 = pop!(s)
-    println(v4)
-    println(s)
+end
 
-    push!(s, v2)
-    println(s)
+function main()
+    N = 10
+    l = LinkedList(N)
+
+    println(l)
 end
 
 main()
-
