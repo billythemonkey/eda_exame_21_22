@@ -1,4 +1,4 @@
-include("../modulos/MyBinaryTree.jl")
+include("../modulos/BinaryTree.jl")
 include("../modulos/Stack.jl")
 
 
