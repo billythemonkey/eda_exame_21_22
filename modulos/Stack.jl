@@ -25,14 +25,15 @@ function pop!(s::Stack)
     else
         s.top -= 1
     end
-    return s.memory[s.top+1]
+    return s.memory[s.top]
 end
 
 function push!(s::Stack, value)
     s.memory[s.top] = value
-    if s.top != length(s.memory)
-        s.top += 1
-    end
+    s.top += 1
+    # if s.top != length(s.memory)
+    #     s.top += 1
+    # end
 end
 
 function print(s::Stack)

@@ -68,10 +68,10 @@ function transplant!(t::BinaryTree, u, v)
     NIL = 1
     if t.vec_p[u] == NIL
         t.root = v
-    elseif u == t.vec_p[t.vec_l[u]]
-        t.vec_p[t.vec_l[u]] = v
+    elseif u == t.vec_l[t.vec_p[u]]
+        t.vec_l[t.vec_p[u]] = v
     else
-        t.vec_p[t.vec_r[u]] = v
+        t.vec_r[t.vec_p[u]] = v
     end
     if v != NIL
         t.vec_p[v] = t.vec_p[u]
@@ -89,11 +89,11 @@ function treeDelete!(t::BinaryTree, z::Int64)
         if t.vec_p[y] != z
             transplant!(t, y, t.vec_r[y])
             t.vec_r[y] = t.vec_r[z]
-            t.vec_r[t.vec_p[y]] = y
+            t.vec_p[t.vec_r[y]] = y
         end
         transplant!(t, z, y)
         t.vec_l[y] = t.vec_l[z]
-        t.vec_l[t.vec_p[y]] = y
+        t.vec_p[t.vec_l[y]] = y
     end
 end
 
@@ -108,11 +108,11 @@ function iterativeTreeSearch(t::BinaryTree, x::Int64, k)
     end
 end
 
-function fillNode!(t, z, key)
-    t.vec_key[z] = key
+function fillNode!(t::BinaryTree, z::Int64, k)
+    t.vec_key[z] = k
 end
 
-function treeInsert!(t, z)
+function treeInsert!(t::BinaryTree, z::Int64)
     NIL = 1
     y = NIL
     x = t.root

@@ -4,6 +4,8 @@ Date: Tue Apr 19 2022
 """
 
 
+module MyQueue
+    
 
 mutable struct Queue
     head::Int64
@@ -18,14 +20,6 @@ end
 function isEmpty(q::Queue)
     if q.head == q.tail && q.head != 1
         println("Underflow error")
-        return true
-    end
-    return false
-end
-
-function isFull(q::Queue)
-    if q.head == q.tail + 1
-        println("Overflow error")
         return true
     end
     return false
@@ -52,37 +46,10 @@ function dequeue!(q::Queue)
 
 end
 
-
-
-function main()
-    N = 10
-    q = Queue(N)
-
-    for i in 1:N
-        enqueue!(q, i)
-        println(q)
-    end
-
-
-
-    v1 = dequeue!(q)
-    println(v1)
-    println(q)
-
-    v2 = dequeue!(q)
-    println(v2)
-    println(q)
-    v3 = dequeue!(q)
-    println(v3)
-    println(q)
-    v4 = dequeue!(q)
-    println(v4)
-    println(q)
-
-    enqueue!(q, v3)
-    println(q)
-
-
+function print(q::Queue)
+    println("Queue head = ", q.head)
+    println("Queue tail = ", q.tail)
+    println("Queue memory = ", q.memory)
 end
 
-main()
+end
