@@ -8,12 +8,13 @@ module MyLinkedList
 mutable struct LinkedList
     NIL::Int64
     head::Int64
-    key::Array
+    key::Array#{Int64}
     prev::Array{Int64}
     next::Array{Int64}
 
     function LinkedList(size::Int64)
         new(1, 1, Array{String}(undef, size), ones(size), ones(size))
+        # new(1, 1, ones(size), ones(size), ones(size))
     end
 end
 
