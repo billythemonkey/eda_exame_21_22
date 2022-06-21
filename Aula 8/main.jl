@@ -58,6 +58,11 @@ function main()
     insert!(t, pos5, 1200)
     println(pos5)
     println(t)
+
+    pos6 = next_position!(s)
+    insert!(t, pos6, 1100)
+    println(pos6)
+    println(t)
 end
 
 main()

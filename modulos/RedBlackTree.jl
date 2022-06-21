@@ -198,15 +198,15 @@ function leftRotate!(t::RedBlackTree, x::Int64)
     y = t.vec_r[x]
     t.vec_r[x] = t.vec_l[y]
     if t.vec_l[y] != NIL
-        t.vec_l[t.vec_p[y]] = x
+        t.vec_p[t.vec_l[y]] = x
     end
     t.vec_p[y] = t.vec_p[x]
     if t.vec_p[x] == NIL
         t.root = y
     elseif x == t.vec_p[t.vec_l[x]]
-        t.vec_p[t.vec_l[x]] = y
+        t.vec_r[t.vec_p[x]] = y
     else
-        t.vec_p[t.vec_r[x]] = y
+        t.vec_r[t.vec_p[x]] = y
     end
     t.vec_l[y] = x
     t.vec_p[x] = y
@@ -217,15 +217,15 @@ function rigthRotate!(t::RedBlackTree, x::Int64)
     y = t.vec_l[x]
     t.vec_l[x] = t.vec_r[y]
     if t.vec_r[y] != NIL
-        t.vec_r[t.vec_p[y]] = x
+        t.vec_p[t.vec_r[y]] = x
     end
     t.vec_p[y] = t.vec_p[x]
     if t.vec_p[x] == NIL
         t.root = y
     elseif x == t.vec_p[t.vec_r[x]]
-        t.vec_p[t.vec_r[x]] = y
+        t.vec_r[t.vec_p[x]] = y
     else
-        t.vec_p[t.vec_l[x]] = y
+        t.vec_l[t.vec_p[x]] = y
     end
     t.vec_r[y] = x
     t.vec_p[x] = y
