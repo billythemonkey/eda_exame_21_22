@@ -74,6 +74,18 @@ function BFS(g::Graph, s::Vertix)
     end
 end
 
+function getAdj(g::Graph, v::Vertix)
+    adj = Vector{Vertix}(length(v.adj))
+    for key in v.adj
+        for v in g.vec_v
+            if v.key == key
+                push!(adj, v)
+            end
+        end
+    end
+    return adj
+end
+
 function addEdge!(g::Graph, e::Edge)
     push!(g.vec_e, e)
     π = e.x # 10
